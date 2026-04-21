@@ -63,4 +63,9 @@ public class BookServiceImpl implements BookService {
     public void delete(Integer id) {
         bookMapper.deleteById(id);
     }
+
+    @Override
+    public List<Book> getAllBooks() {
+        return bookMapper.selectList(null);
+    }
 }

@@ -44,4 +44,9 @@ public class BookController {
     public void delete(@PathVariable Integer id) {
         bookService.delete(id);
     }
+
+    @GetMapping("/all")
+    public List<Book> getAllBooks() {
+        return bookService.getAllBooks();
+    }
 }

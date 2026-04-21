@@ -12,4 +12,5 @@ public interface BookService {
     IPage<Book> getPage(int page, int size, String keyword);
     Book update(Book book);
     void delete(Integer id);
+    List<Book> getAllBooks();
 }

@@ -15,5 +15,6 @@ public class User {
     private String phone;
     private String address;
     private Integer role;
+    private Integer banStatus;
     private Date createdAt;
 }

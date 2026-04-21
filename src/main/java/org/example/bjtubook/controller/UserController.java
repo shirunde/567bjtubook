@@ -5,6 +5,7 @@ import org.example.bjtubook.entity.User;
 import org.example.bjtubook.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -31,5 +32,15 @@ public class UserController {
     @PutMapping
     public User update(@RequestBody User user) {
         return userService.update(user);
+    }
+
+    @GetMapping("/all")
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
+    @PutMapping("/ban/{userId}")
+    public User updateBanStatus(@PathVariable Integer userId, @RequestParam Integer banStatus) {
+        return userService.updateBanStatus(userId, banStatus);
     }
 }
