@@ -26,4 +26,5 @@ public class Book {
     private String college;
     private String major;
     private String grade;
+    private String image;
 }

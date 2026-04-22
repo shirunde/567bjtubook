@@ -5,57 +5,60 @@
       <el-main>
         <div class="detail-content">
           <el-card>
-            <template #header>
-              <div class="book-title">{{ book.title }}</div>
-            </template>
-            <div class="book-info">
-              <div class="info-item">
-                <span class="label">作者：</span>
-                <span>{{ book.author }}</span>
+            <div class="book-detail-content">
+              <div class="book-image">
+                <img :src="book.image || '/images/default-book.jpg'" alt="书籍图片" />
               </div>
-              <div class="info-item">
-                <span class="label">ISBN：</span>
-                <span>{{ book.isbn }}</span>
-              </div>
-              <div class="info-item">
-                <span class="label">价格：</span>
-                <span class="price">¥{{ book.price }}</span>
-              </div>
-              <div class="info-item">
-                <span class="label">版本：</span>
-                <span>{{ book.version }}</span>
-              </div>
-              <div class="info-item">
-                <span class="label">类型：</span>
-                <span>{{ book.type }}</span>
-              </div>
-              <div class="info-item">
-                <span class="label">学院：</span>
-                <span>{{ book.college }}</span>
-              </div>
-              <div class="info-item">
-                <span class="label">专业：</span>
-                <span>{{ book.major }}</span>
-              </div>
-              <div class="info-item">
-                <span class="label">年级：</span>
-                <span>{{ book.grade }}</span>
-              </div>
-              <div class="info-item">
-                <span class="label">状态：</span>
-                <span>{{ book.status === 0 ? '在售' : '已售出' }}</span>
-              </div>
-              <div class="info-item">
-                <span class="label">发布时间：</span>
-                <span>{{ book.createdAt }}</span>
-              </div>
-              <div class="info-item">
-                <span class="label">联系方式：</span>
-                <span class="contact">{{ book.contact }}</span>
-              </div>
-              <div class="info-item">
-                <span class="label">描述：</span>
-                <span class="description">{{ book.description }}</span>
+              <div class="book-info">
+                <div class="book-title">{{ book.title }}</div>
+                <div class="info-item">
+                  <span class="label">作者：</span>
+                  <span>{{ book.author }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">ISBN：</span>
+                  <span>{{ book.isbn }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">价格：</span>
+                  <span class="price">¥{{ book.price }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">版本：</span>
+                  <span>{{ book.version }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">类型：</span>
+                  <span>{{ book.type }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">学院：</span>
+                  <span>{{ book.college }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">专业：</span>
+                  <span>{{ book.major }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">年级：</span>
+                  <span>{{ book.grade }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">状态：</span>
+                  <span>{{ book.status === 0 ? '在售' : '已售出' }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">发布时间：</span>
+                  <span>{{ book.createdAt }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">联系方式：</span>
+                  <span class="contact">{{ book.contact }}</span>
+                </div>
+                <div class="info-item">
+                  <span class="label">描述：</span>
+                  <span class="description">{{ book.description }}</span>
+                </div>
               </div>
             </div>
             <div class="action-buttons">
@@ -124,13 +127,34 @@ export default {
   margin: 20px auto;
 }
 
+.book-detail-content {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.book-image {
+  width: 300px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.book-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .book-title {
   font-size: 24px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .book-info {
-  margin: 20px 0;
+  flex: 1;
 }
 
 .info-item {

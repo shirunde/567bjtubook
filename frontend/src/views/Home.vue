@@ -91,23 +91,26 @@
             @click="goToDetail(book.id)"
             shadow="hover"
           >
-            <template #header>
-              <div class="book-title">{{ book.title }}</div>
-            </template>
-            <div class="book-info">
-              <div class="book-meta">
-                <span class="author">作者：{{ book.author }}</span>
-                <span class="price">¥{{ book.price }}</span>
+            <div class="book-card-content">
+              <div class="book-image">
+                <img :src="book.image || '/images/default-book.jpg'" alt="书籍图片" />
               </div>
-              <div class="book-tags">
-                <el-tag size="small" effect="plain">{{ book.type }}</el-tag>
-                <el-tag size="small" effect="plain">{{ book.college }}</el-tag>
-                <el-tag size="small" effect="plain">{{ book.grade }}</el-tag>
-              </div>
-              <p class="book-description">{{ book.description }}</p>
-              <div class="book-footer">
-                <span class="publish-time">{{ book.createdAt }}</span>
-                <el-button type="primary" size="small" @click.stop="contactSeller(book.contact)">联系卖家</el-button>
+              <div class="book-info">
+                <div class="book-title">{{ book.title }}</div>
+                <div class="book-meta">
+                  <span class="author">作者：{{ book.author }}</span>
+                  <span class="price">¥{{ book.price }}</span>
+                </div>
+                <div class="book-tags">
+                  <el-tag size="small" effect="plain">{{ book.type }}</el-tag>
+                  <el-tag size="small" effect="plain">{{ book.college }}</el-tag>
+                  <el-tag size="small" effect="plain">{{ book.grade }}</el-tag>
+                </div>
+                <p class="book-description">{{ book.description }}</p>
+                <div class="book-footer">
+                  <span class="publish-time">{{ book.createdAt }}</span>
+                  <el-button type="primary" size="small" @click.stop="contactSeller(book.contact)">联系卖家</el-button>
+                </div>
               </div>
             </div>
           </el-card>
@@ -319,6 +322,30 @@ export default {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+.book-card-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.book-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.book-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover .book-image img {
+  transform: scale(1.05);
+}
+
 .book-title {
   font-size: 18px;
   font-weight: bold;
@@ -327,7 +354,9 @@ export default {
 }
 
 .book-info {
-  margin-top: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .book-meta {

@@ -77,6 +77,28 @@
                 placeholder="请输入书籍描述"
               />
             </el-form-item>
+            <el-form-item label="书籍图片">
+              <el-upload
+                class="upload-demo"
+                action="/api/book/upload"
+                :on-success="handleImageUpload"
+                :on-error="handleImageUploadError"
+                :show-file-list="true"
+                :auto-upload="true"
+                :limit="1"
+                :file-list="imageList"
+              >
+                <el-button size="small" type="primary">点击上传</el-button>
+                <template #tip>
+                  <div class="el-upload__tip">
+                    请上传书籍封面图片，支持 JPG、PNG 格式
+                  </div>
+                </template>
+              </el-upload>
+              <div v-if="bookForm.image" class="image-preview">
+                <img :src="bookForm.image" alt="书籍图片" style="width: 100px; height: 100px; object-fit: cover;" />
+              </div>
+            </el-form-item>
             <el-form-item>
               <el-button type="primary" @click="publish">发布书籍</el-button>
             </el-form-item>
@@ -109,8 +131,10 @@ export default {
         major: '',
         grade: '',
         contact: '',
-        description: ''
+        description: '',
+        image: ''
       },
+      imageList: [],
       rules: {
         title: [
           { required: true, message: '请输入书名', trigger: 'blur' }
@@ -146,6 +170,15 @@ export default {
     }
   },
   methods: {
+    handleImageUpload(response) {
+      this.bookForm.image = response;
+      this.imageList = [{ url: response }];
+      this.$message.success('图片上传成功');
+    },
+    handleImageUploadError(error) {
+      this.$message.error('图片上传失败，请稍后重试');
+      console.error('图片上传失败:', error);
+    },
     publish() {
       this.$refs.bookFormRef.validate((valid) => {
         if (valid) {

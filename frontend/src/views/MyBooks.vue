@@ -10,6 +10,11 @@
         <el-card>
           <el-table :data="books" style="width: 100%">
             <el-table-column prop="id" label="ID" width="80" />
+            <el-table-column label="封面" width="100">
+              <template #default="scope">
+                <img :src="scope.row.image || '/images/default-book.jpg'" alt="书籍图片" style="width: 60px; height: 80px; object-fit: cover;" />
+              </template>
+            </el-table-column>
             <el-table-column prop="title" label="书名" />
             <el-table-column prop="author" label="作者" width="120" />
             <el-table-column prop="price" label="价格" width="100">

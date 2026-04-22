@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS books (
     college VARCHAR(100),
     major VARCHAR(100),
     grade VARCHAR(20),
+    image_url VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
